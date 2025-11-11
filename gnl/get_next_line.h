@@ -1,32 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.c                                          :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/10 13:53:06 by david             #+#    #+#             */
-/*   Updated: 2025/11/11 19:11:09 by david            ###   ########.fr       */
+/*   Created: 2025/10/20 17:07:12 by david             #+#    #+#             */
+/*   Updated: 2025/11/04 20:11:14 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
-int	main(void)
-{
-	int fd;
-	fd = open("maps.ber", O_RDONLY);
-	if (fd == -1)
-		return (1);
-	int count = 0;
-	while (count < 30)
-	{
-		char *resultat = get_next_line(fd);
-		if (resultat == NULL)
-			break ;
-		printf("%s", resultat);
-		free(resultat);
-		count++;
-	}
-	close(fd);
-}
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 100
+# endif
+
+# include <unistd.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <fcntl.h>
+
+int		ft_strlen(char *s);
+int		ft_strchr(char *line);
+char	*ft_strdup(char *s, int position);
+char	*ft_strjoin(char *s1, char *s2);
+char	*ft_strcpy(char *line, int *position);
+char	*get_next_line(int fd);
+#endif

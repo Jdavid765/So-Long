@@ -1,6 +1,10 @@
 CC = gcc
-NAME = **
-SRC = **
+NAME = so_long
+DIR = gnl
+
+SRC = so_long.c\
+$(DIR)/get_next_line.c\
+$(DIR)/get_next_line_utils.c
 OBJ = $(SRC:.c=.o)
 CFLAGS = -Wall -Wextra -Werror
 RM = rm -rf
@@ -10,8 +14,8 @@ all : $(NAME)
 %.o : %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
-$(NAME) : $(OBJ)
-	ar rcs $(NAME) $(OBJ)
+$(NAME): $(OBJ)
+	$(CC) $(OBJ) -o $(NAME)
 
 clean :
 	$(RM) $(OBJ)
@@ -21,5 +25,3 @@ fclean :
 re :
 	$(MAKE) fclean
 	$(MAKE) $(all)
-
-.PHONY: all clean fclean re bonus
