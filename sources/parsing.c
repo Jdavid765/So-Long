@@ -1,32 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/10 14:03:57 by david             #+#    #+#             */
-/*   Updated: 2025/11/12 20:17:28 by david            ###   ########.fr       */
+/*   Created: 2025/11/12 16:59:52 by david             #+#    #+#             */
+/*   Updated: 2025/11/12 20:17:58 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include "so_long.h"
 
-# include <stdio.h>
-# include <unistd.h>
-# include <stdlib.h>
-# include "../gnl/get_next_line.h"
-# include "../libft/libft.h"
-
-typedef struct s_game
+int	count_line(int fd)
 {
-	char			**map;
-	struct s_game	*next;
-}					t_game;
+	int		count;
+	char	*value;
 
-int		count_line(int fd);
-int		read_map(void);
-void	ft_free(t_game **game, int *position);
+	count = 0;
+	while (1)
+	{
+		value = get_next_line(fd);
+		if (value == NULL)
+			break ;
+		free(value);
+		count++;
+	}
+	return (count);
+}
 
-#endif
+void	ft_free(t_game **game, int *position)
+{
+	while ((*position--) > 0)
+		free((*game)->map[*position]);
+	free((*game)->map);
+	free((*game));
+	*game = NULL;
+}
