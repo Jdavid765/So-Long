@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 17:06:11 by david             #+#    #+#             */
-/*   Updated: 2025/11/05 07:02:45 by david            ###   ########.fr       */
+/*   Updated: 2025/11/12 13:03:29 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ char	*ft_read(int fd, char *buffer, char *line)
 	nb_bytes = 1;
 	if (fd < 0 || !buffer || !line)
 		return (NULL);
-	while (nb_bytes > 0 && ft_strchr(line) == 0)
+	while (nb_bytes > 0 && ft_strchra(line) == 0)
 	{
 		nb_bytes = read(fd, buffer, BUFFER_SIZE);
 		if (nb_bytes == -1)
 			return (free(line), NULL);
 		buffer[nb_bytes] = '\0';
-		tmp = ft_strjoin(line, buffer);
+		tmp = ft_strjoino(line, buffer);
 		if (!tmp)
 			return (free(line), NULL);
 		free(line);
@@ -41,7 +41,7 @@ char	*ft_extract(char *line, int *position)
 
 	if (line && line[*position] != '\0')
 	{
-		stake = ft_strdup(line, *position);
+		stake = ft_strdupo(line, *position);
 		free(line);
 		*position = 0;
 		return (stake);
@@ -73,7 +73,7 @@ char	*ft_next_get_line(int fd, char **line, char *buffer)
 		return (free(*line), NULL);
 	if ((*line)[0] == '\0')
 		return (free(*line), *line = NULL, NULL);
-	cpy = ft_strcpy(*line, &position);
+	cpy = ft_strcpyyy(*line, &position);
 	if (!cpy)
 		return (free(*line), *line = NULL, NULL);
 	*line = ft_extract(*line, &position);

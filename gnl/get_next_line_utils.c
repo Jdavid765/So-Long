@@ -6,19 +6,19 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 17:06:43 by david             #+#    #+#             */
-/*   Updated: 2025/11/05 00:55:22 by david            ###   ########.fr       */
+/*   Updated: 2025/11/12 13:03:17 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*ft_strcpy(char *line, int *position)
+char	*ft_strcpyyy(char *line, int *position)
 {
 	char	*dest;
 	int		total;
 	char	*start;
 
-	total = ft_strlen(line) + 1;
+	total = ft_strleno(line) + 1;
 	start = malloc((total + 1) * sizeof(char));
 	dest = start;
 	while (line[*position] && line[*position] != '\n')
@@ -35,7 +35,7 @@ char	*ft_strcpy(char *line, int *position)
 	return (start);
 }
 
-int	ft_strlen(char *s)
+int	ft_strleno(char *s)
 {
 	int	count;
 
@@ -45,7 +45,7 @@ int	ft_strlen(char *s)
 	return (count);
 }
 
-char	*ft_strjoin(char *s1, char *s2)
+char	*ft_strjoino(char *s1, char *s2)
 {
 	char	*cpy;
 	int		i;
@@ -56,7 +56,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	j = 0;
 	if (!s1 && !s2)
 		return (NULL);
-	total = ft_strlen(s1) + ft_strlen(s2) + 1;
+	total = ft_strleno(s1) + ft_strleno(s2) + 1;
 	cpy = malloc(total * sizeof(char));
 	if (!cpy)
 		return (NULL);
@@ -71,7 +71,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	return (cpy);
 }
 
-int	ft_strchr(char *line)
+int	ft_strchra(char *line)
 {
 	int	x;
 
@@ -85,13 +85,13 @@ int	ft_strchr(char *line)
 	return (0);
 }
 
-char	*ft_strdup(char *s, int position)
+char	*ft_strdupo(char *s, int position)
 {
 	char	*cpy;
 	int		size;
 	int		i;
 
-	size = ft_strlen(s) + 1;
+	size = ft_strleno(s) + 1;
 	i = 0;
 	cpy = malloc(size * sizeof(char));
 	if (!cpy)
@@ -113,3 +113,4 @@ char	*ft_strdup(char *s, int position)
 // 	// cpy = ft_strcpy(line);
 // 	// printf("%s", cpy);
 // }
+// j'ai mis en commentaire le \n pour mon getnextline car je ne veux pas qu'il le lise pour n'avoir que les informations de la map
