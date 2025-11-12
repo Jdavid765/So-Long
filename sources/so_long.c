@@ -6,13 +6,25 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 13:53:06 by david             #+#    #+#             */
-/*   Updated: 2025/11/12 20:18:45 by david            ###   ########.fr       */
+/*   Updated: 2025/11/12 21:39:10 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-t_game	*check_map(int countline, int fd)
+int	ft_check(t_game **game, int countline)
+{
+	size_t	size;
+	t_game	*gaming;
+
+	gaming = *game;
+	size = ft_strlen(gaming->map[1]);
+	if (countline == (int)size)
+		return (1);
+	return (0);
+}
+
+t_game	*add_map(int countline, int fd)
 {
 	int		position;
 	t_game	*game;
@@ -41,6 +53,7 @@ int	read_map(void)
 	int		fd;
 	int		countline;
 	t_game	*game;
+	int		check;
 
 	countline = 0;
 	fd = open("sources/maps.ber", O_RDONLY);
@@ -54,11 +67,12 @@ int	read_map(void)
 	if (fd < 0)
 		return (1);
 	game = NULL;
-	game = check_map(countline, fd);
-	if (game == NULL)
+	game = add_map(countline, fd);
+	if (game->map == NULL)
 		return (1);
 	close(fd);
-	return (countline);
+	check = ft_check(&game, countline);
+	return (check);
 }
 
 int	main(void)

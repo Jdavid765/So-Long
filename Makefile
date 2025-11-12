@@ -1,10 +1,11 @@
 CC = gcc
-NAME = solong
+NAME = so_long
 DIRGNL = gnl
 DIRSRC = sources
 DIRLIBFT = libft
 
 SRC = $(DIRSRC)/so_long.c \
+	$(DIRSRC)/parsing.c\
 	$(DIRGNL)/get_next_line.c \
 	$(DIRGNL)/get_next_line_utils.c \
 	$(DIRLIBFT)/ft_tolower.c \
