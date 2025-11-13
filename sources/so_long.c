@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 13:53:06 by david             #+#    #+#             */
-/*   Updated: 2025/11/12 21:39:10 by david            ###   ########.fr       */
+/*   Updated: 2025/11/13 15:44:08 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,10 @@
 
 int	ft_check(t_game **game, int countline)
 {
-	size_t	size;
-	t_game	*gaming;
+	t_game	*check;
 
-	gaming = *game;
-	size = ft_strlen(gaming->map[1]);
-	if (countline == (int)size)
+	check = *game;
+	if (check_rectangle(&check, countline) == 1)
 		return (1);
 	return (0);
 }

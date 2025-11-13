@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 16:59:52 by david             #+#    #+#             */
-/*   Updated: 2025/11/12 20:17:58 by david            ###   ########.fr       */
+/*   Updated: 2025/11/13 15:45:02 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,22 @@ void	ft_free(t_game **game, int *position)
 	free((*game)->map);
 	free((*game));
 	*game = NULL;
+}
+
+int	check_rectangle(t_game **game, int countline)
+{
+	t_game	*check;
+	int		i;
+	int		size_first_line;
+
+	check = *game;
+	size_first_line = (int)ft_strlen(check->map[0]);
+	i = 0;
+	while (i <= countline - 1)
+	{
+		if (size_first_line != (int)ft_strlen(check->map[i]))
+			return (1);
+		i++;
+	}
+	return (0);
 }

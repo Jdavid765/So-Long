@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 14:03:57 by david             #+#    #+#             */
-/*   Updated: 2025/11/12 21:14:00 by david            ###   ########.fr       */
+/*   Updated: 2025/11/13 15:42:53 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,6 @@ typedef struct s_game
 int		count_line(int fd);
 int		read_map(void);
 void	ft_free(t_game **game, int *position);
+int		check_rectangle(t_game **game, int position);
 
 #endif
