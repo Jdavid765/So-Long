@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 13:53:06 by david             #+#    #+#             */
-/*   Updated: 2025/11/13 22:39:08 by david            ###   ########.fr       */
+/*   Updated: 2025/11/13 23:06:29 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ t_game	*add_map(int countline, int fd)
 	return (game);
 }
 
-int	read_map(void)
+int	read_map(char *map)
 {
 	int		fd;
 	int		countline;
@@ -55,14 +55,17 @@ int	read_map(void)
 
 	
 	countline = 0;
-	fd = open("sources/maps.ber", O_RDONLY);
+	fd = open(map, O_RDONLY);
 	if (fd < 0)
+	{
+		printf("sexy daniel\n");
 		return (1);
+	}
 	countline = count_line(fd);
 	if (countline <= 0)
 		return (-1);
 	close(fd);
-	fd = open("sources/maps.ber", O_RDONLY);
+	fd = open(map, O_RDONLY);
 	if (fd < 0)
 		return (1);
 	game = NULL;
@@ -74,8 +77,16 @@ int	read_map(void)
 	return (check);
 }
 
-int	main(void)
+int	main(int ac, char **av)
 {
-	int count = read_map();
+	int		count;
+
+	if (ac == 2)
+	{
+		count = read_map(av[1]);
+	}
+	else
+		return (1);
 	printf("%d\n", count);
+	return (0);
 }
