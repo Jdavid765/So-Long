@@ -17,7 +17,7 @@ int	ft_strchr(const char *s, int c)
 	int	i;
 
 	i = 0;
-	while (s[i])
+	while (s[i] && s[i] != '\n')
 	{
 		if (s[i] != (char)c)
 			return (1);

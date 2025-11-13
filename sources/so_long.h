@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 14:03:57 by david             #+#    #+#             */
-/*   Updated: 2025/11/13 16:55:36 by david            ###   ########.fr       */
+/*   Updated: 2025/11/13 22:47:21 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,6 @@ int		read_map(void);
 void	ft_free(t_game **game, int *position);
 int		check_rectangle(t_game **game, int position);
 int		check_side_rec(t_game **game, int i);
+int		check_rectangle2(t_game **game, int countline);
 
 #endif

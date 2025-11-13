@@ -52,7 +52,7 @@ SRC = $(DIRSRC)/so_long.c \
 	$(DIRLIBFT)/ft_lstmap_bonus.c
 
 OBJ = $(SRC:.c=.o)
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 RM = rm -rf
 
 all: $(NAME)

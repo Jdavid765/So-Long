@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 16:59:52 by david             #+#    #+#             */
-/*   Updated: 2025/11/13 16:59:22 by david            ###   ########.fr       */
+/*   Updated: 2025/11/13 22:47:33 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,18 +53,31 @@ int	check_rectangle(t_game **game, int countline)
 			return (1);
 		i++;
 	}
+	if (check_rectangle2(&check, countline) == 1)
+		return (1);
+	return (0);
+	
+}
+int	check_rectangle2(t_game **game, int countline)
+{
+	int	i;
+	t_game *check;
+
 	i = 0;
+	check = *game;
 	while (i <= countline - 1)
 	{
 		if (i == 0 || i == (countline - 1))
 		{
 			if (ft_strchr(check->map[i], '1') == 1)
 				return (1);
+			i++;
 		}
 		else
 		{
 			if (check_side_rec(&check, i) == 1)
 				return (1);
+			i++;
 		}
 	}
 	return (0);
@@ -77,7 +90,7 @@ int	check_side_rec(t_game **game, int i)
 
 	side = *game;
 	size = ft_strlen(side->map[i]);
-	if (side->map[i][0] != '1' && side->map[i][size - 1] != '1')
+	if (side->map[i][0] != '1' || side->map[i][size - 1] != '1')
 		return (1);
 	return (0);
 }

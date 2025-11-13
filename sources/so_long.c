@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 13:53:06 by david             #+#    #+#             */
-/*   Updated: 2025/11/13 15:44:08 by david            ###   ########.fr       */
+/*   Updated: 2025/11/13 22:39:08 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ int	read_map(void)
 	t_game	*game;
 	int		check;
 
+	
 	countline = 0;
 	fd = open("sources/maps.ber", O_RDONLY);
 	if (fd < 0)
