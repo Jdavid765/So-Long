@@ -37,7 +37,6 @@ SRC = $(DIRSRC)/so_long.c \
 	$(DIRLIBFT)/ft_striteri.c \
 	$(DIRLIBFT)/ft_strmapi.c \
 	$(DIRLIBFT)/ft_substr.c \
-	$(DIRLIBFT)/ft_strtrim.c \
 	$(DIRLIBFT)/ft_putchar_fd.c \
 	$(DIRLIBFT)/ft_putstr_fd.c \
 	$(DIRLIBFT)/ft_putendl_fd.c \
