@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 16:59:52 by david             #+#    #+#             */
-/*   Updated: 2025/11/14 15:52:52 by david            ###   ########.fr       */
+/*   Updated: 2025/11/14 16:40:07 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,15 +77,31 @@ int	check_rectangle2(t_game *game, int countline)
 	return (0);
 }
 
-int	check_side_rec(t_game *game, int i)
+int	check_side_rec(t_game *game, int x)
 {
 	int		size;
-	int		x;
+	int		y;
 
-	x = 0;
-	size = ft_strlen(game->map.grid[i]);
-	if (game->map.grid[i][x] != '1' || game->map.grid[i][size - 1] != '1')
+	y = 0;
+	size = ft_strlen(game->map.grid[x]);
+	if (game->map.grid[x][y] != '1' || game->map.grid[x][size - 1] != '1')
 		return (1);
-	x++;
+	y++;
+	while (game->map.grid[x][y] && game->map.grid[x][y] != '\n')
+	{
+		if (game->map.grid[x][y] == 'P')
+			game->infomap.player++;
+		else if(game->map.grid[x][y] == 'C')
+			game->infomap.collectible++;
+		else if (game->map.grid[x][y] == 'E')
+			game->infomap.exit++;
+		else if (game->map.grid[x][y] == 'O')
+			game->infomap.cell++;
+		else if (game->map.grid[x][y] == '1')
+			game->infomap.wall++;
+		else
+			return (1);
+		y++;
+	}
 	return (0);
 }

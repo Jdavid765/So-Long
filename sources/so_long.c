@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 13:53:06 by david             #+#    #+#             */
-/*   Updated: 2025/11/14 15:53:34 by david            ###   ########.fr       */
+/*   Updated: 2025/11/14 16:52:42 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,16 @@
 
 int	ft_check(t_game *game, int countline)
 {
-	// int		x;
-	// int		y;
-
-	// x = 0;
-	// y = 0;
 	if (check_rectangle(game, countline) == 1)
 		return (1);
-	// while (game->map[x][y])
+	if (game->infomap.cell < 0)
+		return (printf("%d", game->infomap.cell), 1);
+	else if (game->infomap.collectible < 0)
+		return (1);
+	else if (game->infomap.exit != 1 || game->infomap.exit < 0)
+		return (1);
+	else if (game->infomap.player < 0 || game->infomap.player != 1)
+		return (1);
 	return (0);
 }
 
@@ -66,6 +68,14 @@ int	read_map(t_game *game)
 	close(fd);
 	return (ft_check(game, countline));
 }
+void	initialiser(t_game *game)
+{
+	game->infomap.player = 0;
+	game->infomap.collectible = 0;
+	game->infomap.cell = 0;
+	game->infomap.exit = 0;
+	game->infomap.wall = 0;
+}
 
 int	main(int ac, char **av)
 {
@@ -74,6 +84,7 @@ int	main(int ac, char **av)
 
 	if (ac == 2)
 	{
+		initialiser(&game);
 		game.map.filename = av[1];
 		count = read_map(&game);
 	}
