@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 14:03:57 by david             #+#    #+#             */
-/*   Updated: 2025/11/14 16:20:33 by david            ###   ########.fr       */
+/*   Updated: 2025/11/14 21:55:33 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,22 +22,32 @@
 typedef struct s_map
 {
 	char	**grid;
+	char	**cpygrid;
 	char	*filename;
 }			t_map;
+
+typedef struct s_player
+{
+	int	x;
+	int	y;
+}		t_player;
 
 typedef struct s_infomap
 {
 	int	player;
-	int	collectible;
+	int	collectible_total;
 	int	cell;
 	int	exit;
 	int	wall;
+	int	collectible_found;
+	int	exit_found;
 }		t_infomap;
 
 typedef struct s_game
 {
 	t_map		map;
 	t_infomap	infomap;
+	t_player	player;
 }			t_game;
 
 int		count_line(int fd);

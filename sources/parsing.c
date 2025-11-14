@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 16:59:52 by david             #+#    #+#             */
-/*   Updated: 2025/11/14 16:40:07 by david            ###   ########.fr       */
+/*   Updated: 2025/11/14 22:53:02 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ int	check_rectangle(t_game *game, int countline)
 	if (check_rectangle2(game, countline) == 1)
 		return (1);
 	return (0);
-	
 }
+
 int	check_rectangle2(t_game *game, int countline)
 {
 	int	i;
@@ -90,9 +90,13 @@ int	check_side_rec(t_game *game, int x)
 	while (game->map.grid[x][y] && game->map.grid[x][y] != '\n')
 	{
 		if (game->map.grid[x][y] == 'P')
+		{
+			game->player.x = x;
+			game->player.y = y;
 			game->infomap.player++;
-		else if(game->map.grid[x][y] == 'C')
-			game->infomap.collectible++;
+		}
+		else if (game->map.grid[x][y] == 'C')
+			game->infomap.collectible_total++;
 		else if (game->map.grid[x][y] == 'E')
 			game->infomap.exit++;
 		else if (game->map.grid[x][y] == 'O')
@@ -104,4 +108,13 @@ int	check_side_rec(t_game *game, int x)
 		y++;
 	}
 	return (0);
+}
+
+int	floodfil(t_game *game, int x, int y)
+{
+	if (game->map.cpygrid[x][y] == 1 || game->map.cpygrid[x][y] == 'v')
+		return ;
+	if (game->infomap.collectible_found == game->infomap.collectible_total
+		&& game->infomap.exit_found == game->infomap.exit)
+		return (0);
 }
