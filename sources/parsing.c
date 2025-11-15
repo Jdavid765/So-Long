@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 16:59:52 by david             #+#    #+#             */
-/*   Updated: 2025/11/14 22:53:02 by david            ###   ########.fr       */
+/*   Updated: 2025/11/15 12:52:42 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ int	count_line(int fd)
 	return (count);
 }
 
-void	ft_free(t_game *game, int *position)
+void	ft_free(t_game *game, int position)
 {
-	while ((*position--) > 0)
-		free(game->map.grid[*position]);
+	while (position >= 0)
+		free(game->map.grid[position--]);
 	free(game->map.grid);
 }
 
@@ -112,9 +112,27 @@ int	check_side_rec(t_game *game, int x)
 
 int	floodfil(t_game *game, int x, int y)
 {
-	if (game->map.cpygrid[x][y] == 1 || game->map.cpygrid[x][y] == 'v')
-		return ;
 	if (game->infomap.collectible_found == game->infomap.collectible_total
 		&& game->infomap.exit_found == game->infomap.exit)
-		return (0);
+			return (1);
+	if (game->map.cpygrid[x][y] == '1' || game->map.cpygrid[x][y] == 'V')
+		return (1);
+	else if (game->map.cpygrid[x][y] == 'C')
+	{
+		game->infomap.collectible_found++;
+		game->map.cpygrid[x][y] = 'V';	
+	}
+	else if (game->map.cpygrid[x][y] == 'E')
+	{
+		game->infomap.exit_found++;
+		game->map.cpygrid[x][y] = 'V';
+	}
+	else if (game->map.cpygrid[x][y] == 'O')
+		game->map.cpygrid[x][y] = 'V';
+
+	floodfil(game, x + 1, y);
+	floodfil(game, x - 1, y);
+	floodfil(game, x, y + 1);
+	floodfil(game, x, y - 1);
+	return (0);
 }
