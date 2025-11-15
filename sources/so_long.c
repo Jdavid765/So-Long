@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 13:53:06 by david             #+#    #+#             */
-/*   Updated: 2025/11/15 12:24:40 by david            ###   ########.fr       */
+/*   Updated: 2025/11/15 13:15:29 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int	ft_check(t_game *game, int countline)
 {
-	int x = 0;
 	if (check_rectangle(game, countline) == 1)
 		return (1);
 	if (game->infomap.cell < 0)
@@ -28,8 +27,6 @@ int	ft_check(t_game *game, int countline)
 	game->map.cpygrid = game->map.grid;
 	if (floodfil(game, game->player.x, game->player.y) == 1)
 		return (1);
-	while (game->map.cpygrid[x])
-		printf("%s", game->map.cpygrid[x++]);
 	return (0);
 }
 

@@ -5,6 +5,7 @@ DIRSRC = sources
 DIRLIBFT = libft
 
 SRC = $(DIRSRC)/so_long.c \
+	$(DIRSRC)/floodfil.c\
 	$(DIRSRC)/parsing.c\
 	$(DIRGNL)/get_next_line.c \
 	$(DIRGNL)/get_next_line_utils.c \
