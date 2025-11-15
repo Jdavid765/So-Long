@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 14:03:57 by david             #+#    #+#             */
-/*   Updated: 2025/11/15 11:52:14 by david            ###   ########.fr       */
+/*   Updated: 2025/11/15 21:49:14 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <stdlib.h>
 # include "../gnl/get_next_line.h"
 # include "../libft/libft.h"
+# include "../mlx/mlx.h"
 
 typedef struct s_map
 {
@@ -30,6 +31,7 @@ typedef struct s_player
 {
 	int	x;
 	int	y;
+	int	deplacement;
 }		t_player;
 
 typedef struct s_infomap
@@ -43,11 +45,18 @@ typedef struct s_infomap
 	int	exit_found;
 }		t_infomap;
 
+typedef struct s_mlx
+{
+	void	*screen;
+	void	*win;
+}		t_mlx;
+
 typedef struct s_game
 {
 	t_map		map;
 	t_infomap	infomap;
 	t_player	player;
+	t_mlx		mlx;
 }			t_game;
 
 int		count_line(int fd);
@@ -57,5 +66,6 @@ int		check_rectangle(t_game *game, int position);
 int		check_side_rec(t_game *game, int i);
 int		check_rectangle2(t_game *game, int countline);
 int		floodfil(t_game *game, int x, int y);
+void	init(t_game *game);
 
 #endif

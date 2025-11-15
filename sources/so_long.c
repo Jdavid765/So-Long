@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 13:53:06 by david             #+#    #+#             */
-/*   Updated: 2025/11/15 13:15:29 by david            ###   ########.fr       */
+/*   Updated: 2025/11/15 20:54:44 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,32 +73,29 @@ int	read_map(t_game *game)
 	return (0);
 }
 
-void	init(t_game *game)
+t_game	*get_game()
 {
-	game->infomap.player = 0;
-	game->infomap.collectible_total = 0;
-	game->infomap.cell = 0;
-	game->infomap.exit = 0;
-	game->infomap.wall = 0;
-	game->infomap.collectible_found = 0;
-	game->infomap.exit_found = 0;
-	game->player.x = 0;
-	game->player.y = 0;
+	static t_game game;
+
+	return (&game);
 }
 
 int	main(int ac, char **av)
 {
 	int		count;
-	t_game	game;
+	t_game	*game;
 
+	game = get_game();
 	if (ac == 2)
 	{
-		init(&game);
-		game.map.filename = av[1];
-		count = read_map(&game);
+		init(game);
+		game->map.filename = av[1];
+		count = read_map(game);
 	}
 	else
 		return (1);
 	printf("\n%d\n", count);
+	mlx_destroy_display(game->mlx.screen);
+	mlx_destroy_window(game->mlx.screen, game->mlx.win);
 	return (0);
 }

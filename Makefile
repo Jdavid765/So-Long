@@ -3,9 +3,12 @@ NAME = so_long
 DIRGNL = gnl
 DIRSRC = sources
 DIRLIBFT = libft
+DIRMLX = mlx
+MLX_LIB = $(DIRMLX)/libmlx.a
 
 SRC = $(DIRSRC)/so_long.c \
 	$(DIRSRC)/floodfil.c\
+	$(DIRSRC)/initialiser.c\
 	$(DIRSRC)/parsing.c\
 	$(DIRGNL)/get_next_line.c \
 	$(DIRGNL)/get_next_line_utils.c \
@@ -50,25 +53,27 @@ SRC = $(DIRSRC)/so_long.c \
 	$(DIRLIBFT)/ft_lstiter_bonus.c \
 	$(DIRLIBFT)/ft_lstsize_bonus.c \
 	$(DIRLIBFT)/ft_lstlast_bonus.c \
-	$(DIRLIBFT)/ft_lstmap_bonus.c
+	$(DIRLIBFT)/ft_lstmap_bonus.c\
 
 OBJ = $(SRC:.c=.o)
-CFLAGS = -Wall -Wextra -Werror -g
+LDFLAGS = -L$(DIRMLX) -lmlx -lXext -lX11
 RM = rm -rf
 
-all: $(NAME)
+all: $(MLX_LIB) $(NAME)
 
-%.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+$(MLX_LIB):
+	$(MAKE) -C $(DIRMLX)
 
 $(NAME): $(OBJ)
-	$(CC) $(OBJ) -o $(NAME)
+	$(CC) $(OBJ) $(MLX_LIB) $(LDFLAGS) -o $(NAME)
 
 clean:
 	$(RM) $(OBJ)
+	$(MAKE) -C $(DIRMLX) clean
 
 fclean: clean
 	$(RM) $(NAME)
+	$(MAKE) -C $(DIRMLX) clean
 
 re: fclean all
 
