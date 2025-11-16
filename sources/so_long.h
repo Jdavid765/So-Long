@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 14:03:57 by david             #+#    #+#             */
-/*   Updated: 2025/11/16 14:20:25 by david            ###   ########.fr       */
+/*   Updated: 2025/11/16 17:33:28 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ typedef struct s_infomap
 
 typedef struct s_mlx
 {
-	void	*screen;
+	void	*minlibx;
 	void	*win;
 }		t_mlx;
 
@@ -80,5 +80,6 @@ int		floodfil(t_game *game, int x, int y);
 void	init(t_game *game);
 void	start_game(t_game *game);
 void	start_image(t_game *game);
+void	my_mlx_pixel_put(t_game *game, int x, int y, int color);
 
 #endif
