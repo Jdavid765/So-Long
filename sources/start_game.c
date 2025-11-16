@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/16 10:57:53 by david             #+#    #+#             */
-/*   Updated: 2025/11/16 22:10:41 by david            ###   ########.fr       */
+/*   Updated: 2025/11/16 23:00:07 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@ void	start_game(t_game *game)
 
 void	start_image(t_game *game)
 {
-	game->data.player = mlx_xpm_file_to_image(game->mlx.minlibx, "images/vegeto.xmp", &game->data.width, &game->data.height);
-	game->data.wall = mlx_xpm_file_to_image(game->mlx.minlibx, "images/wall.xmp", &game->data.width, &game->data.height);
-	game->data.floor = mlx_xpm_file_to_image(game->mlx.minlibx, "images/floor.xmp", &game->data.width, &game->data.height);
-	game->data.coin = mlx_xpm_file_to_image(game->mlx.minlibx, "images/coin.xmp", &game->data.width, &game->data.height);
-	game->data.exit = mlx_xpm_file_to_image(game->mlx.minlibx, "images/exit.xmp", &game->data.width, &game->data.height);
+	game->data.player = mlx_xpm_file_to_image(game->mlx.minlibx, "images/vegeto.xpm", &game->data.width, &game->data.height);
+	game->data.wall = mlx_xpm_file_to_image(game->mlx.minlibx, "images/wall.xpm", &game->data.width, &game->data.height);
+	game->data.floor = mlx_xpm_file_to_image(game->mlx.minlibx, "images/floor.xpm", &game->data.width, &game->data.height);
+	game->data.coin = mlx_xpm_file_to_image(game->mlx.minlibx, "images/coin.xpm", &game->data.width, &game->data.height);
+	game->data.exit = mlx_xpm_file_to_image(game->mlx.minlibx, "images/exit.xpm", &game->data.width, &game->data.height);
 }
 
 void	draw_map(t_game *game)
@@ -43,9 +43,8 @@ void	draw_map(t_game *game)
 		while (game->map.grid[x][y] && game->map.grid[x][y] != '\n')
 		{
 			game->data.image = choose_pixel(game, x, y);
-			if (!game->data.image)
-				free(game->data.image);
-			mlx_put_image_to_window(game->mlx.minlibx, game->mlx.win, game->data.image, game->data.width * x, game->data.width * y);
+			if (game->data.image)
+				mlx_put_image_to_window(game->mlx.minlibx, game->mlx.win, game->data.image, game->data.width * y, game->data.width * x);
 			y++;
 		}
 		x++;
