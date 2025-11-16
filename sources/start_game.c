@@ -1,31 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   initialiser.c                                      :+:      :+:    :+:   */
+/*   start_game.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/15 16:33:42 by david             #+#    #+#             */
-/*   Updated: 2025/11/16 13:36:39 by david            ###   ########.fr       */
+/*   Created: 2025/11/16 10:57:53 by david             #+#    #+#             */
+/*   Updated: 2025/11/16 13:39:08 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	init(t_game *game)
+void	start_game(t_game *game)
 {
-	game->infomap.player = 0;
-	game->infomap.collectible_total = 0;
-	game->infomap.cell = 0;
-	game->infomap.exit = 0;
-	game->infomap.wall = 0;
-	game->infomap.collectible_found = 0;
-	game->infomap.exit_found = 0;
-	game->player.x = 0;
-	game->player.y = 0;
-	game->player.deplacement = 0;
-	game->data.addr = NULL;
-	game->data.bits_pixel = 0;
-	game->data.endian = 0;
-	game->data.line= 0;
+	game->mlx.screen = mlx_init();
+	start_image(game);
+	game->mlx.win = mlx_new_window(game->mlx.screen, 1920, 1080, "fortnite");
+	mlx_loop(game->mlx.screen);
+}
+
+void	start_image(t_game *game)
+{
+		game->data.image = mlx_new_image(game->mlx.screen, 1920, 1080);
+	game->data.addr = mlx_get_data_addr("../images/vegeto.xmp",
+			&game->data.bits_pixel, &game->data.line, &game->data.endian);
 }

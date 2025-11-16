@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 13:53:06 by david             #+#    #+#             */
-/*   Updated: 2025/11/15 20:54:44 by david            ###   ########.fr       */
+/*   Updated: 2025/11/16 12:58:21 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	read_map(t_game *game)
 		return (1);
 	countline = count_line(fd);
 	if (countline <= 0)
-		return (-1);
+		return (1);
 	close(fd);
 	fd = open(game->map.filename, O_RDONLY);
 	if (fd < 0)
@@ -69,33 +69,26 @@ int	read_map(t_game *game)
 		return (1);
 	close(fd);
 	if (ft_check(game, countline) == 1)
-		return (1);
+		return (ft_printf("Erreur de map incorrecte"),1);
+	start_game(game);
 	return (0);
-}
-
-t_game	*get_game()
-{
-	static t_game game;
-
-	return (&game);
 }
 
 int	main(int ac, char **av)
 {
 	int		count;
-	t_game	*game;
+	t_game	game;
 
-	game = get_game();
 	if (ac == 2)
 	{
-		init(game);
-		game->map.filename = av[1];
-		count = read_map(game);
+		init(&game);
+		game.map.filename = av[1];
+		count = read_map(&game);
 	}
 	else
 		return (1);
 	printf("\n%d\n", count);
-	mlx_destroy_display(game->mlx.screen);
-	mlx_destroy_window(game->mlx.screen, game->mlx.win);
+	// mlx_destroy_display(game.mlx.screen);
+	// mlx_destroy_window(game.mlx.screen, game.mlx.win);
 	return (0);
 }

@@ -5,8 +5,11 @@ DIRSRC = sources
 DIRLIBFT = libft
 DIRMLX = mlx
 MLX_LIB = $(DIRMLX)/libmlx.a
+DIRPRINTF = printf
+PRINTF_LIB = $(DIRPRINTF)/libftprintf.a
 
 SRC = $(DIRSRC)/so_long.c \
+	$(DIRSRC)/start_game.c\
 	$(DIRSRC)/floodfil.c\
 	$(DIRSRC)/initialiser.c\
 	$(DIRSRC)/parsing.c\
@@ -59,21 +62,48 @@ OBJ = $(SRC:.c=.o)
 LDFLAGS = -L$(DIRMLX) -lmlx -lXext -lX11
 RM = rm -rf
 
-all: $(MLX_LIB) $(NAME)
+# --------------------------------------------------------
+#        BARRE DE PROGRESSION (ROSE) POUR COMPILATION
+# --------------------------------------------------------
+
+NB := $(words $(SRC))
+BARLEN = 30
+
+%.o: %.c
+	@$(eval CNT := $(shell ls $(DIRSRC)/*.o $(DIRGNL)/*.o $(DIRLIBFT)/*.o $(DIRPRINTF)/*.o 2>/dev/null | wc -l))
+	@$(eval PROG := $(shell echo $$(($(CNT) * 100 / $(NB))) ))
+	@$(eval FILLED := $(shell echo $$(($(PROG) * $(BARLEN) / 100)) ))
+	@$(eval EMPTY := $(shell echo $$(($(BARLEN) - $(FILLED))) ))
+
+	@printf "\r\033[35m[%s%s] %3s%%\033[0m  \033[90m(%s)\033[0m" \
+		$$(printf '#%.0s' $$(seq 1 $(FILLED))) \
+		$$(printf '.%.0s' $$(seq 1 $(EMPTY))) \
+		"$(PROG)" "$<"
+
+	@$(CC) $(CFLAGS) -c $< -o $@
+
+# --------------------------------------------------------
+
+all: $(PRINTF_LIB) $(MLX_LIB) $(NAME)
 
 $(MLX_LIB):
-	$(MAKE) -C $(DIRMLX)
+	$(MAKE) -C $(DIRMLX) --no-print-directory > /dev/null
+
+$(PRINTF_LIB):
+	$(MAKE) -C $(DIRPRINTF)
 
 $(NAME): $(OBJ)
-	$(CC) $(OBJ) $(MLX_LIB) $(LDFLAGS) -o $(NAME)
+	$(CC) $(OBJ) $(MLX_LIB) $(PRINTF_LIB) $(LDFLAGS) -o $(NAME)
 
 clean:
 	$(RM) $(OBJ)
-	$(MAKE) -C $(DIRMLX) clean
+	$(MAKE) -C $(DIRMLX) clean --no-print-directory > /dev/null
+	$(MAKE) -C $(DIRPRINTF) clean --no-print-directory > /dev/null
 
 fclean: clean
 	$(RM) $(NAME)
-	$(MAKE) -C $(DIRMLX) clean
+	$(MAKE) -C $(DIRMLX) clean --no-print-directory > /dev/null
+	$(MAKE) -C $(DIRPRINTF) clean --no-print-directory > /dev/null
 
 re: fclean all
 
