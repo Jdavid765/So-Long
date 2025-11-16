@@ -7,6 +7,7 @@ DIRMLX = mlx
 MLX_LIB = $(DIRMLX)/libmlx.a
 DIRPRINTF = printf
 PRINTF_LIB = $(DIRPRINTF)/libftprintf.a
+CFLAGS = -Wall -Wextra -Werror -g
 
 SRC = $(DIRSRC)/so_long.c \
 	$(DIRSRC)/start_game.c\
@@ -93,7 +94,7 @@ $(PRINTF_LIB):
 	$(MAKE) -C $(DIRPRINTF)
 
 $(NAME): $(OBJ)
-	$(CC) $(OBJ) $(MLX_LIB) $(PRINTF_LIB) $(LDFLAGS) -o $(NAME)
+	$(CC) $(OBJ) $(MLX_LIB) $(PRINTF_LIB) $(LDFLAGS) $(CFLAGS) -o $(NAME)
 
 clean:
 	$(RM) $(OBJ)

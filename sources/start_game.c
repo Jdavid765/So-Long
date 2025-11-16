@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/16 10:57:53 by david             #+#    #+#             */
-/*   Updated: 2025/11/16 17:48:46 by david            ###   ########.fr       */
+/*   Updated: 2025/11/16 22:10:41 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,41 +15,55 @@
 void	start_game(t_game *game)
 {
 	game->mlx.minlibx = mlx_init();
-	// start_image(game);
-	game->mlx.win = mlx_new_window(game->mlx.minlibx, 1920, 1080, "DBZ");
 	start_image(game);
+	game->mlx.win = mlx_new_window(game->mlx.minlibx, 1920, 1080, "DBZ");
+	draw_map(game);
 	mlx_loop(game->mlx.minlibx);
 }
 
 void	start_image(t_game *game)
 {
-	int	x = 0;
-	int	y = 0;
+	game->data.player = mlx_xpm_file_to_image(game->mlx.minlibx, "images/vegeto.xmp", &game->data.width, &game->data.height);
+	game->data.wall = mlx_xpm_file_to_image(game->mlx.minlibx, "images/wall.xmp", &game->data.width, &game->data.height);
+	game->data.floor = mlx_xpm_file_to_image(game->mlx.minlibx, "images/floor.xmp", &game->data.width, &game->data.height);
+	game->data.coin = mlx_xpm_file_to_image(game->mlx.minlibx, "images/coin.xmp", &game->data.width, &game->data.height);
+	game->data.exit = mlx_xpm_file_to_image(game->mlx.minlibx, "images/exit.xmp", &game->data.width, &game->data.height);
+}
 
-	game->data.image = mlx_new_image(game->mlx.minlibx, 64, 64);
-	game->data.addr = mlx_get_data_addr(game->data.image, &game->data.bits_pixel, &game->data.line, &game->data.endian);
-	while (x < 100)
+void	draw_map(t_game *game)
+{
+	int	x;
+	int	y;
+
+	x = 0;
+	y = 0;
+	while (game->map.grid[x])
 	{
 		y = 0;
-		while (y < 50)
+		while (game->map.grid[x][y] && game->map.grid[x][y] != '\n')
 		{
-			my_mlx_pixel_put(game, x, y, 0x00FF0000);
-			mlx_put_image_to_window(game->mlx.minlibx, game->mlx.win, game->data.image, x, y);
+			game->data.image = choose_pixel(game, x, y);
+			if (!game->data.image)
+				free(game->data.image);
+			mlx_put_image_to_window(game->mlx.minlibx, game->mlx.win, game->data.image, game->data.width * x, game->data.width * y);
 			y++;
 		}
 		x++;
 	}
 }
 
-void	my_mlx_pixel_put(t_game *game, int x, int y, int color)
+void	*choose_pixel(t_game *game, int x, int y)
 {
-	char	*dst;
+	if (game->map.grid[x][y] == '1')
+		return (game->data.wall);
+	else if (game->map.grid[x][y] == 'O')
+		return (game->data.floor);
+	else if (game->map.grid[x][y] == 'P')
+		return (game->data.player);
+	else if (game->map.grid[x][y] == 'E')
+		return (game->data.exit);
+	else if (game->map.grid[x][y] == 'C')
+		return (game->data.coin);
 
-	dst = game->data.addr + (y * game->data.line + x * (game->data.bits_pixel/ 8));
-	*(unsigned int*)dst = color;
+	return (NULL);
 }
-
-// void	*texture(t_game *game)
-// {
-	
-// }

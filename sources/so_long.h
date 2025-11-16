@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 14:03:57 by david             #+#    #+#             */
-/*   Updated: 2025/11/16 17:33:28 by david            ###   ########.fr       */
+/*   Updated: 2025/11/16 22:09:24 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,14 @@ typedef struct s_mlx
 
 typedef struct s_data
 {
+	void	*wall;
+	void	*floor;
+	void	*player;
+	void	*coin;
+	void	*exit;
 	void	*image;
-	int		bits_pixel;
-	int		line;
-	int		endian;
-	char	*addr;
+	int		width;
+	int		height;
 }		t_data;
 
 typedef struct s_game
@@ -80,6 +83,7 @@ int		floodfil(t_game *game, int x, int y);
 void	init(t_game *game);
 void	start_game(t_game *game);
 void	start_image(t_game *game);
-void	my_mlx_pixel_put(t_game *game, int x, int y, int color);
+void	draw_map(t_game *game);
+void	*choose_pixel(t_game *game, int x, int y);
 
 #endif

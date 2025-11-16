@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/15 16:33:42 by david             #+#    #+#             */
-/*   Updated: 2025/11/16 13:36:39 by david            ###   ########.fr       */
+/*   Updated: 2025/11/16 20:44:03 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@ void	init(t_game *game)
 	game->player.x = 0;
 	game->player.y = 0;
 	game->player.deplacement = 0;
-	game->data.addr = NULL;
-	game->data.bits_pixel = 0;
-	game->data.endian = 0;
-	game->data.line= 0;
+	game->data.height = 64;
+	game->data.width = 64;
 }
