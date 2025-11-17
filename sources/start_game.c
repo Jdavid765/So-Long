@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/16 10:57:53 by david             #+#    #+#             */
-/*   Updated: 2025/11/17 19:49:39 by david            ###   ########.fr       */
+/*   Updated: 2025/11/17 19:52:57 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,8 @@ int	ft_print_walk(int keycode, t_game *game)
 	ft_printf("Numbers of movements = %d\tavec la touche = %d\n", game->player.walk, keycode);
 	game->player.walk++;
 	return (0);
+}
+int	ft_check_keycode(int keycode, t_game *game)
+{
+	
 }
