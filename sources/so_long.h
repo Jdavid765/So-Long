@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 14:03:57 by david             #+#    #+#             */
-/*   Updated: 2025/11/17 19:43:53 by david            ###   ########.fr       */
+/*   Updated: 2025/11/17 20:33:22 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,11 @@ typedef struct s_player
 	int	x;
 	int	y;
 	int	walk;
+	int	UP;
+	int	DOWN;
+	int	LEFT;
+	int	RIGHT;
+	int	ESC;
 }		t_player;
 
 typedef struct s_infomap
@@ -79,17 +84,19 @@ typedef struct s_game
 
 int		count_line(int fd);
 int		read_map(t_game *game);
-void	ft_free(t_game *game, int position);
 int		check_rectangle(t_game *game, int position);
 int		check_side_rec(t_game *game, int i);
 int		check_rectangle2(t_game *game, int countline);
 int		floodfil(t_game *game, int x, int y);
+int		ft_cpygrid(t_game *game, int countline);
+int		ft_key_hook(int keycode, t_game *game);
+int		ft_check_keycode(int keycode, t_game *game);
+void	ft_free(t_game *game, int position);
 void	init(t_game *game);
 void	start_game(t_game *game);
 void	start_image(t_game *game);
 void	draw_map(t_game *game);
 void	*choose_pixel(t_game *game, int x, int y);
-int		ft_cpygrid(t_game *game, int countline);
-int		ft_print_walk(int keycode, t_game *game);
+void	ft_exit(t_game *game);
 
 #endif
