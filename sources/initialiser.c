@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/15 16:33:42 by david             #+#    #+#             */
-/*   Updated: 2025/11/16 22:50:08 by david            ###   ########.fr       */
+/*   Updated: 2025/11/17 14:45:51 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,6 @@ void	init(t_game *game)
 	game->data.height = 64;
 	game->data.width = 64;
 	game->data.image = NULL;
+	game->mlx.width = 1920;
+	game->mlx.height = 1080;
 }

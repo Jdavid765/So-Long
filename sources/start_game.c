@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/16 10:57:53 by david             #+#    #+#             */
-/*   Updated: 2025/11/16 23:00:07 by david            ###   ########.fr       */
+/*   Updated: 2025/11/17 14:45:47 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,10 @@ void	start_game(t_game *game)
 {
 	game->mlx.minlibx = mlx_init();
 	start_image(game);
-	game->mlx.win = mlx_new_window(game->mlx.minlibx, 1920, 1080, "DBZ");
+	game->mlx.win = mlx_new_window(game->mlx.minlibx, game->mlx.width, game->mlx.height, "DBZ");
 	draw_map(game);
+	//game->data.image = mlx_xpm_file_to_image(game->mlx.minlibx, "images/namek.xpm", &game->data.width, &game->data.height);
+	//mlx_put_image_to_window(game->mlx.minlibx, game->mlx.win, game->data.image, 110, 110);
 	mlx_loop(game->mlx.minlibx);
 }
 
@@ -37,31 +39,31 @@ void	draw_map(t_game *game)
 
 	x = 0;
 	y = 0;
-	while (game->map.grid[x])
+	while (game->map.grid[y])
 	{
-		y = 0;
-		while (game->map.grid[x][y] && game->map.grid[x][y] != '\n')
+		x = 0;
+		while (game->map.grid[y][x] && game->map.grid[y][x] != '\n')
 		{
 			game->data.image = choose_pixel(game, x, y);
 			if (game->data.image)
-				mlx_put_image_to_window(game->mlx.minlibx, game->mlx.win, game->data.image, game->data.width * y, game->data.width * x);
-			y++;
+				mlx_put_image_to_window(game->mlx.minlibx, game->mlx.win, game->data.image, game->data.width * x, game->data.width * y);
+			x++;
 		}
-		x++;
+		y++;
 	}
 }
 
 void	*choose_pixel(t_game *game, int x, int y)
 {
-	if (game->map.grid[x][y] == '1')
+	if (game->map.grid[y][x] == '1')
 		return (game->data.wall);
-	else if (game->map.grid[x][y] == 'O')
+	else if (game->map.grid[y][x] == 'O')
 		return (game->data.floor);
-	else if (game->map.grid[x][y] == 'P')
+	else if (game->map.grid[y][x] == 'P')
 		return (game->data.player);
-	else if (game->map.grid[x][y] == 'E')
+	else if (game->map.grid[y][x] == 'E')
 		return (game->data.exit);
-	else if (game->map.grid[x][y] == 'C')
+	else if (game->map.grid[y][x] == 'C')
 		return (game->data.coin);
 
 	return (NULL);

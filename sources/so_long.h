@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 14:03:57 by david             #+#    #+#             */
-/*   Updated: 2025/11/16 22:09:24 by david            ###   ########.fr       */
+/*   Updated: 2025/11/17 15:02:29 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ typedef struct s_mlx
 {
 	void	*minlibx;
 	void	*win;
+	int		width;
+	int		height;
 }		t_mlx;
 
 typedef struct s_data
