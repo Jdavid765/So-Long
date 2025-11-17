@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/16 10:57:53 by david             #+#    #+#             */
-/*   Updated: 2025/11/17 20:41:06 by david            ###   ########.fr       */
+/*   Updated: 2025/11/17 23:24:43 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	ft_check_keycode(int keycode, t_game *game)
 	else if (keycode == game->player.DOWN)
 		return (game->player.walk++, 0);
 	else if (keycode == game->player.RIGHT)
-		return (game->player.walk++, 0);
+		return (game->player.walk++, 0);	
 	else if (keycode == game->player.ESC)
 		ft_exit(game);
 	return (1);
@@ -57,5 +57,10 @@ void	ft_exit(t_game *game)
 
 // void	ft_move_player(t_game *game)
 // {
-	
+// 	if (game->map.grid[game->player.x][game->player.y] == '1')
+// 	{
+// 		game->player.x--;
+// 		return ;
+// 	}
+// 	game->map.grid[game->player.x][game->player.y] = 'P';
 // }
