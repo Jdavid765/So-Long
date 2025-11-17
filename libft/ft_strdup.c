@@ -22,6 +22,7 @@ char	*ft_strdup(const char *s)
 	if (!cpy)
 		return (NULL);
 	ft_memcpy(cpy, s, size);
+	cpy[size] = '\0';
 	return (cpy);
 }
 /*int main(void)

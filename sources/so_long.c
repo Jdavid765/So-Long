@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 13:53:06 by david             #+#    #+#             */
-/*   Updated: 2025/11/16 21:53:30 by david            ###   ########.fr       */
+/*   Updated: 2025/11/17 16:03:04 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ int	ft_check(t_game *game, int countline)
 		return (1);
 	else if (game->infomap.player != 1)
 		return (1);
-	game->map.cpygrid = game->map.grid;
+	if (ft_cpygrid(game, countline) == 1)
+		return (1);
 	if (floodfil(game, game->player.x, game->player.y) == 1)
 		return (1);
 	return (0);

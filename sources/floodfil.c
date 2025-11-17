@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/15 13:15:57 by david             #+#    #+#             */
-/*   Updated: 2025/11/17 14:32:05 by david            ###   ########.fr       */
+/*   Updated: 2025/11/17 16:58:42 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,23 @@ int	floodfil(t_game *game, int x, int y)
 		&& game->infomap.exit_found == game->infomap.exit)
 		return (0);
 	return (1);
+}
+
+int	ft_cpygrid(t_game *game, int countline)
+{
+	int	y;
+
+	y = 0;
+	game->map.cpygrid = malloc((countline) * sizeof(char *));
+	if (!game->map.cpygrid)
+		free(game->map.cpygrid);
+	game->map.cpygrid[countline] = NULL; 
+	while (y < countline)
+	{
+		game->map.cpygrid[y] = ft_strdup(game->map.grid[y]);
+		if (!game->map.cpygrid)
+			return ((free(game->map.cpygrid), 1));
+		y++;
+	}
+	return (0);
 }

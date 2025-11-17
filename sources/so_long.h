@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 14:03:57 by david             #+#    #+#             */
-/*   Updated: 2025/11/17 15:02:29 by david            ###   ########.fr       */
+/*   Updated: 2025/11/17 19:43:53 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ typedef struct s_player
 {
 	int	x;
 	int	y;
-	int	deplacement;
+	int	walk;
 }		t_player;
 
 typedef struct s_infomap
@@ -64,6 +64,8 @@ typedef struct s_data
 	void	*image;
 	int		width;
 	int		height;
+	int		scale_x;
+	int		scale_y;
 }		t_data;
 
 typedef struct s_game
@@ -87,5 +89,7 @@ void	start_game(t_game *game);
 void	start_image(t_game *game);
 void	draw_map(t_game *game);
 void	*choose_pixel(t_game *game, int x, int y);
+int		ft_cpygrid(t_game *game, int countline);
+int		ft_print_walk(int keycode, t_game *game);
 
 #endif
