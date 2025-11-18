@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 16:59:52 by david             #+#    #+#             */
-/*   Updated: 2025/11/17 23:19:40 by david            ###   ########.fr       */
+/*   Updated: 2025/11/18 18:53:39 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,12 @@ int	count_line(int fd)
 
 void	ft_free(t_game *game, int position)
 {
-	while (position >= 0)
-		free(game->map.grid[position--]);
-	free(game->map.grid);
+	int	i;
+
+	i = 0;
+	while (i < position)
+		free(game->map.cpygrid[i++]);
+	free(game->map.cpygrid);
 }
 
 int	check_rectangle(t_game *game, int countline)
@@ -41,11 +44,11 @@ int	check_rectangle(t_game *game, int countline)
 	int		i;
 	int		size_first_line;
 
-	size_first_line = (int)ft_strlen(game->map.grid[0]);
+	size_first_line = (int)ft_strlen_v2(game->map.grid[0]);
 	i = 0;
 	while (i <= countline - 1)
 	{
-		if (size_first_line != (int)ft_strlen(game->map.grid[i]))
+		if (size_first_line != (int)ft_strlen_v2(game->map.grid[i]))
 			return (1);
 		i++;
 	}
@@ -83,29 +86,11 @@ int	check_side_rec(t_game *game, int x)
 	int		y;
 
 	y = 0;
-	size = ft_strlen(game->map.grid[x]);
+	size = ft_strlen_v2(game->map.grid[x]);
 	if (game->map.grid[x][y] != '1' || game->map.grid[x][size - 1] != '1')
 		return (1);
 	y++;
-	while (game->map.grid[x][y] && game->map.grid[x][y] != '\n')
-	{
-		if (game->map.grid[x][y] == 'P')
-		{
-			game->player.x = x;
-			game->player.y = y;
-			game->infomap.player++;
-		}
-		else if (game->map.grid[x][y] == 'C')
-			game->infomap.collectible_total++;
-		else if (game->map.grid[x][y] == 'E')
-			game->infomap.exit++;
-		else if (game->map.grid[x][y] == 'O')
-			game->infomap.cell++;
-		else if (game->map.grid[x][y] == '1')
-			game->infomap.wall++;
-		else
-			return (1);
-		y++;
-	}
+	if (collecte_infomap(game, x, y) == 1)
+		return (1);
 	return (0);
 }

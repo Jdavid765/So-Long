@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 14:03:57 by david             #+#    #+#             */
-/*   Updated: 2025/11/18 12:04:31 by david            ###   ########.fr       */
+/*   Updated: 2025/11/18 19:26:20 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,11 @@ typedef struct s_player
 	int	x;
 	int	y;
 	int	walk;
-	int	UP;
-	int	DOWN;
-	int	LEFT;
-	int	RIGHT;
-	int	ESC;
+	int	up;
+	int	down;
+	int	left;
+	int	right;
+	int	esc;
 }		t_player;
 
 typedef struct s_infomap
@@ -49,6 +49,7 @@ typedef struct s_infomap
 	int	wall;
 	int	collectible_found;
 	int	exit_found;
+	int	size_char;
 }		t_infomap;
 
 typedef struct s_mlx
@@ -57,6 +58,7 @@ typedef struct s_mlx
 	void	*win;
 	int		width;
 	int		height;
+	int		size_line;
 }		t_mlx;
 
 typedef struct s_data
@@ -71,6 +73,8 @@ typedef struct s_data
 	int		height;
 	int		scale_x;
 	int		scale_y;
+	int		x_exit;
+	int		y_exit;
 }		t_data;
 
 typedef struct s_game
@@ -93,11 +97,15 @@ int		ft_key_hook(int keycode, t_game *game);
 int		ft_check_keycode(int keycode, t_game *game);
 void	ft_free(t_game *game, int position);
 void	init(t_game *game);
-void	start_game(t_game *game);
+int		start_game(t_game *game, int countline);
 void	start_image(t_game *game);
 void	draw_map(t_game *game);
 void	*choose_pixel(t_game *game, int x, int y);
 void	ft_exit(t_game *game);
-void	ft_move_player(t_game *game, int tmp_x, int tmp_y);
+int		collecte_infomap(t_game *game, int x, int y);
+int		ft_move_player(t_game *game, int tmp_x, int tmp_y);
+int		follow_move_player(t_game *game, int tmp_x, int tmp_y);
+void	ft_free_all_map(t_game *game, int countline);
+int		ft_strlen_v2(const char *str);
 
 #endif

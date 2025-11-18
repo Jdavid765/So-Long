@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/15 13:15:57 by david             #+#    #+#             */
-/*   Updated: 2025/11/17 16:58:42 by david            ###   ########.fr       */
+/*   Updated: 2025/11/18 18:54:40 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,16 +43,27 @@ int	ft_cpygrid(t_game *game, int countline)
 	int	y;
 
 	y = 0;
-	game->map.cpygrid = malloc((countline) * sizeof(char *));
+	game->map.cpygrid = malloc((countline + 1) * sizeof(char *));
 	if (!game->map.cpygrid)
-		free(game->map.cpygrid);
-	game->map.cpygrid[countline] = NULL; 
+		return (1);
 	while (y < countline)
 	{
+		printf("[%s] len=%u\n", game->map.grid[y], (int)ft_strlen(game->map.grid[y]));
 		game->map.cpygrid[y] = ft_strdup(game->map.grid[y]);
-		if (!game->map.cpygrid)
-			return ((free(game->map.cpygrid), 1));
+		if (!game->map.cpygrid[y])
+			return ((ft_free(game, y), 1));
 		y++;
 	}
+	game->map.cpygrid[y] = NULL;
 	return (0);
+}
+
+int	ft_strlen_v2(const char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] && str[i] != '\n')
+		i++;
+	return (i);
 }

@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/15 16:33:42 by david             #+#    #+#             */
-/*   Updated: 2025/11/17 20:33:31 by david            ###   ########.fr       */
+/*   Updated: 2025/11/18 19:26:42 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,12 @@ void	init(t_game *game)
 	game->data.scale_x = 0;
 	game->data.scale_y = 0;
 	game->player.walk = 0;
-	game->player.DOWN = 115;
-	game->player.LEFT = 113;
-	game->player.RIGHT = 100;
-	game->player.UP = 122;
-	game->player.ESC = 65307;
+	game->player.down = 115;
+	game->player.left = 113;
+	game->player.right = 100;
+	game->player.up = 122;
+	game->player.esc = 65307;
+	game->mlx.size_line = 0;
+	game->data.x_exit = 0;
+	game->data.y_exit = 0;
 }
