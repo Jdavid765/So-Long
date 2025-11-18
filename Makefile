@@ -12,6 +12,7 @@ CFLAGS = -Wall -Wextra -Werror -g
 
 SRC = $(DIRSRC)/so_long.c \
 	$(DIRSRC)/start_game.c\
+	$(DIRSRC)/move_player.c\
 	$(DIRSRC)/floodfil.c\
 	$(DIRSRC)/initialiser.c\
 	$(DIRSRC)/parsing.c\

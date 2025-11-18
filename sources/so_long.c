@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 13:53:06 by david             #+#    #+#             */
-/*   Updated: 2025/11/17 23:15:43 by david            ###   ########.fr       */
+/*   Updated: 2025/11/18 12:37:17 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int	ft_check(t_game *game, int countline)
 		return (1);
 	if (floodfil(game, game->player.x, game->player.y) == 1)
 		return (1);
+	game->infomap.collectible_found = 0;
 	return (0);
 }
 
