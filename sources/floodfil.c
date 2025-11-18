@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/15 13:15:57 by david             #+#    #+#             */
-/*   Updated: 2025/11/18 18:54:40 by david            ###   ########.fr       */
+/*   Updated: 2025/11/18 19:55:08 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ int	ft_cpygrid(t_game *game, int countline)
 		return (1);
 	while (y < countline)
 	{
-		printf("[%s] len=%u\n", game->map.grid[y], (int)ft_strlen(game->map.grid[y]));
 		game->map.cpygrid[y] = ft_strdup(game->map.grid[y]);
 		if (!game->map.cpygrid[y])
 			return ((ft_free(game, y), 1));
