@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 12:25:06 by david             #+#    #+#             */
-/*   Updated: 2025/11/18 12:33:36 by david            ###   ########.fr       */
+/*   Updated: 2025/11/18 12:47:53 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,5 +82,5 @@ void	ft_move_player(t_game *game, int tmp_x, int tmp_y)
 
 // void	follow_move_player(t_game *game, int tmp_x , int tmp_y)
 // {
-		
+	
 // }
