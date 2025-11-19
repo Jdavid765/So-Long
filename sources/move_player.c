@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 12:25:06 by david             #+#    #+#             */
-/*   Updated: 2025/11/19 15:54:52 by david            ###   ########.fr       */
+/*   Updated: 2025/11/19 18:54:54 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	ft_key_hook(int keycode, t_game *game)
 		ft_printf("Movements player = %d\n", game->player.walk);
 	else if (result == 2)
 	{
-		ft_printf("Good Job you finish the game 2D!");
+		ft_printf("Good Job you finish the game 2D!\n");
 		mlx_loop_end(game->mlx.minlibx);
 		return (1);
 	}

@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/15 16:33:42 by david             #+#    #+#             */
-/*   Updated: 2025/11/18 19:26:42 by david            ###   ########.fr       */
+/*   Updated: 2025/11/19 18:52:44 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,6 @@ void	init(t_game *game)
 	game->mlx.size_line = 0;
 	game->data.x_exit = 0;
 	game->data.y_exit = 0;
+	game->map.grid = NULL;
+	game->map.cpygrid = NULL;
 }
