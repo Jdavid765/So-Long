@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 13:53:06 by david             #+#    #+#             */
-/*   Updated: 2025/11/18 19:35:43 by david            ###   ########.fr       */
+/*   Updated: 2025/11/19 15:56:25 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ int	add_map(int countline, int fd, t_game *game)
 	game->map.grid = malloc((countline + 1) * sizeof(char *));
 	if (!game->map.grid)
 		return (free(game), 1);
-	
 	while (position < countline)
 	{
 		game->map.grid[position] = get_next_line(fd);
@@ -81,13 +80,14 @@ int	read_map(t_game *game)
 	if (fd < 0)
 		return (1);
 	if (add_map(countline, fd, game) == 1)
-		return (ft_free_all_map(game,countline), 1);
+		return (ft_free_all_map(game, countline), 1);
 	close(fd);
 	if (ft_check(game, countline) == 1)
-		return (ft_printf("Erreur de map incorrecte"),ft_free_all_map(game,countline), 1);
+		return (ft_printf("Erreur de map incorrecte"),
+			ft_free_all_map(game, countline), 1);
 	take_size_line(game);
 	if (start_game(game, countline) == 1)
-		return (ft_free_all_map(game,countline), 1);
+		return (ft_free_all_map(game, countline), 1);
 	ft_free_all_map(game, countline);
 	return (0);
 }

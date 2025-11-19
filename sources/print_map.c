@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 19:07:25 by david             #+#    #+#             */
-/*   Updated: 2025/11/18 19:23:15 by david            ###   ########.fr       */
+/*   Updated: 2025/11/19 15:57:49 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,15 @@
 void	start_image(t_game *game)
 {
 	game->data.player = mlx_xpm_file_to_image(game->mlx.minlibx,
-			"textures/vegeto.xpm", &game->data.width, &game->data.height);
+			"textures/alessio.xpm", &game->data.width, &game->data.height);
 	game->data.wall = mlx_xpm_file_to_image(game->mlx.minlibx,
-			"textures/wall.xpm", &game->data.width, &game->data.height);
+			"textures/42.xpm", &game->data.width, &game->data.height);
 	game->data.floor = mlx_xpm_file_to_image(game->mlx.minlibx,
 			"textures/floor.xpm", &game->data.width, &game->data.height);
 	game->data.coin = mlx_xpm_file_to_image(game->mlx.minlibx,
-			"textures/coin.xpm", &game->data.width, &game->data.height);
+			"textures/dia.xpm", &game->data.width, &game->data.height);
 	game->data.exit = mlx_xpm_file_to_image(game->mlx.minlibx,
-			"textures/exit.xpm", &game->data.width, &game->data.height);
+			"textures/daniel.xpm", &game->data.width, &game->data.height);
 }
 
 void	draw_map(t_game *game)
