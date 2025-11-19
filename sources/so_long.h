@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 14:03:57 by david             #+#    #+#             */
-/*   Updated: 2025/11/19 13:59:34 by david            ###   ########.fr       */
+/*   Updated: 2025/11/19 14:18:57 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,5 +108,6 @@ int		follow_move_player(t_game *game, int tmp_x, int tmp_y);
 void	ft_free_all_map(t_game *game, int countline);
 int		ft_strlen_v2(const char *str);
 void	ft_put_door(t_game *game);
+void	ft_free_image(t_game *game);
 
 #endif

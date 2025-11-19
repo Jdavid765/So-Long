@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/16 10:57:53 by david             #+#    #+#             */
-/*   Updated: 2025/11/18 19:42:20 by david            ###   ########.fr       */
+/*   Updated: 2025/11/19 14:21:02 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,16 +33,17 @@ int	start_game(t_game *game, int countline)
 
 void	ft_exit(t_game *game)
 {
-	free(game->data.player);
-	free(game->data.floor);
-	free(game->data.coin);
-	free(game->data.wall);
-	free(game->data.exit);
-	if (game->mlx.win)
-		mlx_destroy_window(game->mlx.minlibx, game->mlx.win);
-	if (game->mlx.minlibx)
-	{
-		mlx_destroy_display(game->mlx.minlibx);
-		free(game->mlx.minlibx);
-	}
+	ft_free_image(game);
+	mlx_destroy_window(game->mlx.minlibx, game->mlx.win);
+	mlx_destroy_display(game->mlx.minlibx);
+	free(game->mlx.minlibx);
+}
+
+void	ft_free_image(t_game *game)
+{
+	mlx_destroy_image(game->mlx.minlibx, game->data.floor);
+	mlx_destroy_image(game->mlx.minlibx, game->data.exit);
+	mlx_destroy_image(game->mlx.minlibx, game->data.coin);
+	mlx_destroy_image(game->mlx.minlibx, game->data.wall);
+	mlx_destroy_image(game->mlx.minlibx, game->data.player);
 }
