@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 12:25:06 by david             #+#    #+#             */
-/*   Updated: 2025/11/18 19:48:16 by david            ###   ########.fr       */
+/*   Updated: 2025/11/19 14:00:40 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,6 @@
 
 int	ft_key_hook(int keycode, t_game *game)
 {
-	if (game->infomap.collectible_found == game->infomap.collectible_total)
-	{
-		game->map.grid[game->data.x_exit][game->data.y_exit] = 'E';
-		draw_map(game);
-	}
 	int	result;
 
 	result = ft_check_keycode(keycode, game);
@@ -98,6 +93,8 @@ int	follow_move_player(t_game *game, int tmp_x, int tmp_y)
 		game->player.x = tmp_x;
 		game->player.y = tmp_y;
 		game->player.walk++;
+		if (game->infomap.collectible_found == game->infomap.collectible_total)
+			ft_put_door(game);
 		draw_map(game);
 		return (0);
 	}
@@ -112,4 +109,10 @@ int	follow_move_player(t_game *game, int tmp_x, int tmp_y)
 		return (0);
 	}
 	return (1);
+}
+
+void	ft_put_door(t_game *game)
+{
+	game->map.grid[game->data.x_exit][game->data.y_exit] = 'E';
+	draw_map(game);
 }
