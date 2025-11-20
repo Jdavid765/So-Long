@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/16 10:57:53 by david             #+#    #+#             */
-/*   Updated: 2025/11/19 15:55:14 by david            ###   ########.fr       */
+/*   Updated: 2025/11/20 15:44:13 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int	start_game(t_game *game, int countline)
 		return (free(game->mlx.minlibx), 1);
 	draw_map(game);
 	mlx_key_hook(game->mlx.win, ft_key_hook, game);
+	mlx_hook(game->mlx.win, 17, 1L << 2, ft_close_mouse, game);
 	mlx_loop(game->mlx.minlibx);
 	ft_exit(game);
 	return (0);
@@ -46,4 +47,11 @@ void	ft_free_image(t_game *game)
 	mlx_destroy_image(game->mlx.minlibx, game->data.coin);
 	mlx_destroy_image(game->mlx.minlibx, game->data.wall);
 	mlx_destroy_image(game->mlx.minlibx, game->data.player);
+}
+
+int	ft_close_mouse(t_game *game)
+{
+	ft_printf("You close the windows with the mouse\n");
+	mlx_loop_end(game->mlx.minlibx);
+	return (0);
 }
