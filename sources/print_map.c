@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 19:07:25 by david             #+#    #+#             */
-/*   Updated: 2025/11/21 13:31:30 by david            ###   ########.fr       */
+/*   Updated: 2025/11/21 14:02:38 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	start_image(t_game *game)
 	game->data.player = mlx_xpm_file_to_image(game->mlx.minlibx,
 			"textures/alessio.xpm", &game->data.width, &game->data.height);
 	game->data.wall = mlx_xpm_file_to_image(game->mlx.minlibx,
-			"textures/42.xpm", &game->data.width, &game->data.height);
+			"textures/lulu.xpm", &game->data.width, &game->data.height);
 	game->data.floor = mlx_xpm_file_to_image(game->mlx.minlibx,
 			"textures/floor.xpm", &game->data.width, &game->data.height);
 	game->data.coin = mlx_xpm_file_to_image(game->mlx.minlibx,
