@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/16 10:57:53 by david             #+#    #+#             */
-/*   Updated: 2025/11/20 15:44:13 by david            ###   ########.fr       */
+/*   Updated: 2025/11/21 13:28:23 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	start_game(t_game *game, int countline)
 {
-	game->map.grid[game->data.x_exit][game->data.y_exit] = 'O';
+	game->map.grid[game->data.x_exit][game->data.y_exit] = '0';
 	game->mlx.minlibx = mlx_init();
 	if (!game->mlx.minlibx)
 		return (free(game->mlx.minlibx), 1);
@@ -25,8 +25,8 @@ int	start_game(t_game *game, int countline)
 	if (!game->mlx.win)
 		return (free(game->mlx.minlibx), 1);
 	draw_map(game);
-	mlx_key_hook(game->mlx.win, ft_key_hook, game);
-	mlx_hook(game->mlx.win, 17, 1L << 2, ft_close_mouse, game);
+	mlx_hook(game->mlx.win, 2, 1L << 0, ft_key_hook, game);
+	mlx_hook(game->mlx.win, 17, 0, ft_close_mouse, game);
 	mlx_loop(game->mlx.minlibx);
 	ft_exit(game);
 	return (0);

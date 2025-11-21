@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 19:07:25 by david             #+#    #+#             */
-/*   Updated: 2025/11/19 15:57:49 by david            ###   ########.fr       */
+/*   Updated: 2025/11/21 13:31:30 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	*choose_pixel(t_game *game, int x, int y)
 {
 	if (game->map.grid[y][x] == '1')
 		return (game->data.wall);
-	else if (game->map.grid[y][x] == 'O')
+	else if (game->map.grid[y][x] == '0')
 		return (game->data.floor);
 	else if (game->map.grid[y][x] == 'P')
 		return (game->data.player);

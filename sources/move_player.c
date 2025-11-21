@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 12:25:06 by david             #+#    #+#             */
-/*   Updated: 2025/11/19 18:54:54 by david            ###   ########.fr       */
+/*   Updated: 2025/11/21 13:29:06 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int	ft_move_player(t_game *game, int tmp_x, int tmp_y)
 		ft_printf("You can't take the door\n");
 		return (1);
 	}
-	else if (game->map.grid[tmp_x][tmp_y] == 'O')
+	else if (game->map.grid[tmp_x][tmp_y] == '0')
 	{
 		if (follow_move_player(game, tmp_x, tmp_y) == 0)
 			return (0);
@@ -88,7 +88,7 @@ int	follow_move_player(t_game *game, int tmp_x, int tmp_y)
 	if (game->map.grid[tmp_x][tmp_y] == 'C')
 	{
 		game->infomap.collectible_found++;
-		game->map.grid[game->player.x][game->player.y] = 'O';
+		game->map.grid[game->player.x][game->player.y] = '0';
 		game->map.grid[tmp_x][tmp_y] = 'P';
 		game->player.x = tmp_x;
 		game->player.y = tmp_y;
@@ -98,9 +98,9 @@ int	follow_move_player(t_game *game, int tmp_x, int tmp_y)
 		draw_map(game);
 		return (0);
 	}
-	else if (game->map.grid[tmp_x][tmp_y] == 'O')
+	else if (game->map.grid[tmp_x][tmp_y] == '0')
 	{
-		game->map.grid[game->player.x][game->player.y] = 'O';
+		game->map.grid[game->player.x][game->player.y] = '0';
 		game->map.grid[tmp_x][tmp_y] = 'P';
 		game->player.x = tmp_x;
 		game->player.y = tmp_y;

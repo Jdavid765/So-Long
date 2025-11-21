@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 14:03:57 by david             #+#    #+#             */
-/*   Updated: 2025/11/20 15:38:28 by david            ###   ########.fr       */
+/*   Updated: 2025/11/21 12:39:39 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,15 +49,12 @@ typedef struct s_infomap
 	int	wall;
 	int	collectible_found;
 	int	exit_found;
-	int	size_char;
 }		t_infomap;
 
 typedef struct s_mlx
 {
 	void	*minlibx;
 	void	*win;
-	int		width;
-	int		height;
 	int		size_line;
 }		t_mlx;
 
@@ -71,8 +68,6 @@ typedef struct s_data
 	void	*image;
 	int		width;
 	int		height;
-	int		scale_x;
-	int		scale_y;
 	int		x_exit;
 	int		y_exit;
 }		t_data;

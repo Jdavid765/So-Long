@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/15 13:15:57 by david             #+#    #+#             */
-/*   Updated: 2025/11/18 19:55:08 by david            ###   ########.fr       */
+/*   Updated: 2025/11/21 13:28:38 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	floodfil(t_game *game, int x, int y)
 		game->infomap.exit_found++;
 		game->map.cpygrid[x][y] = 'V';
 	}
-	else if (game->map.cpygrid[x][y] == 'O')
+	else if (game->map.cpygrid[x][y] == '0')
 		game->map.cpygrid[x][y] = 'V';
 	floodfil(game, x + 1, y);
 	floodfil(game, x - 1, y);

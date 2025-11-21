@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/15 16:33:42 by david             #+#    #+#             */
-/*   Updated: 2025/11/19 18:52:44 by david            ###   ########.fr       */
+/*   Updated: 2025/11/21 12:38:47 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,6 @@ void	init(t_game *game)
 	game->data.height = 0;
 	game->data.width = 0;
 	game->data.image = NULL;
-	game->mlx.width = 1600;
-	game->mlx.height = 1200;
-	game->data.scale_x = 0;
-	game->data.scale_y = 0;
 	game->player.walk = 0;
 	game->player.down = 115;
 	game->player.left = 113;

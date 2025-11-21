@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 13:53:06 by david             #+#    #+#             */
-/*   Updated: 2025/11/20 15:08:32 by david            ###   ########.fr       */
+/*   Updated: 2025/11/21 12:39:59 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ int	read_map(t_game *game)
 		return (ft_free_all_map(game, countline), 1);
 	close(fd);
 	if (ft_check(game, countline) == 1)
-		return (ft_printf("Erreur de map incorrecte\n"),
+		return (ft_printf("Error to charge the map\n"),
 			ft_free_all_map(game, countline), 1);
 	take_size_line(game);
 	if (start_game(game, countline) == 1)

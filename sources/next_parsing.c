@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 16:09:49 by david             #+#    #+#             */
-/*   Updated: 2025/11/18 19:27:34 by david            ###   ########.fr       */
+/*   Updated: 2025/11/21 13:29:23 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	collecte_infomap(t_game *game, int x, int y)
 			game->data.y_exit = y;
 			game->infomap.exit++;
 		}
-		else if (game->map.grid[x][y] == 'O')
+		else if (game->map.grid[x][y] == '0')
 			game->infomap.cell++;
 		else if (game->map.grid[x][y] == '1')
 			game->infomap.wall++;
